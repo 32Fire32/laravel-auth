@@ -22,10 +22,9 @@
                         <td>{{ $project->slug }}</td>
                         <td>{{ $project->client }}</td>
                         <td>{{ $project->shipped_at }}</td>
-                        <td>...</td>
+                        <td><a href="{{ route('admin.projects.show', $project) }}" class="btn btn-primary">View</a></td>
                     </tr>
                 @endforeach
-
             </tbody>
         </table>
     @endsection
