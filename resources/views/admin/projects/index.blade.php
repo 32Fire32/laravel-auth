@@ -3,6 +3,7 @@
 @section('content')
     <div class="container">
         <h1>Lista Progetti:</h1>
+        <a href="{{ route('admin.projects.create') }}" class="btn btn-warning">Inserisci un nuovo progetto</a>
         <table class="table">
             <thead>
                 <tr>
@@ -22,7 +23,7 @@
                         <td>{{ $project->slug }}</td>
                         <td>{{ $project->client }}</td>
                         <td>{{ $project->shipped_at }}</td>
-                        <td><a href="{{ route('admin.projects.show', $project) }}" class="btn btn-primary">View</a></td>
+                        <td><a href="{{ route('admin.projects.show', $project) }}" class="btn btn-primary">Dettagli</a></td>
                     </tr>
                 @endforeach
             </tbody>
