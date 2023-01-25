@@ -19,7 +19,6 @@
                     <tr>
                         <td>{{ $project->id }}</td>
                         <td>{{ $project->name_project }}</td>
-                        <td>{{ $project->summary }}</td>
                         <td>{{ $project->slug }}</td>
                         <td>{{ $project->client }}</td>
                         <td>{{ $project->shipped_at }}</td>
