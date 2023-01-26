@@ -15,12 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Rotte pubbliche
+// Rotte pubbliche del frontoffice
 Route::get('/', function () {
     return view('welcome');
 });
 
-// Tutte le rotte protette da autenticazione
+// Tutte le rotte protette da autenticazione del backoffice
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
 
     Route::get('/dashboard', function () {
