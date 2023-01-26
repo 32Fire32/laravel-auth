@@ -9,6 +9,21 @@
                 {{ session('message') }}
             </div>
         @endif
+        {{-- toast --}}
+        @if (session('message'))
+            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                <div id="liveToast" class="show toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <strong class="me-auto">Attenzione!</strong>
+                        <small>{{ \Carbon\Carbon::now()->diffForHumans() }}</small>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        {{ session('message') }}
+                    </div>
+                </div>
+            </div>
+        @endif
         <table class="table">
             <thead>
                 <tr>
@@ -41,18 +56,12 @@
                                 aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Cancella il progetto</h5>
-                                            <button type="button" class="close" data-bs-dismiss="modal">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
                                         <div class="modal-body">
                                             <h5 class="text-center">Sei sicuro di cancellare
                                                 {{ $project->name_project }}?
                                             </h5>
                                             <form action="{{ route('admin.projects.destroy', $project->slug) }}"
-                                                method="POST" enctype="multipart/form-data">
+                                                method="POST" class="d-flex justify-content-center">
                                                 @csrf
                                                 @method('DELETE')
                                                 <div class="modal-footer">
