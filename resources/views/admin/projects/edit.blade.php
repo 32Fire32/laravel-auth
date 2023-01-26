@@ -39,7 +39,7 @@
                 <div class="alert alert-danger">{{ $message }} </div>
             @enderror
             <button type="submit" class="btn btn-primary">Modifica</button>
-            <button type="reset" class="btn btn-secondary">Annulla</button>
+            <a href="{{ route('admin.projects.index') }}"class="btn btn-secondary">Torna alla lista dei progetti</a>
         </form>
     </div>
 @endsection
