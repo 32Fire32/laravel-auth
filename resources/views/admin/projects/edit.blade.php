@@ -23,14 +23,6 @@
                 <div class="alert alert-danger">{{ $message }} </div>
             @enderror
             <div class="mb-3">
-                <label for="slug" class="form-label">Slug*</label>
-                <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug"
-                    value="{{ old('slug', $project->slug) }}" required>
-            </div>
-            @error('slug')
-                <div class="alert alert-danger">{{ $message }} </div>
-            @enderror
-            <div class="mb-3">
                 <label for="client" class="form-label">Cliente*</label>
                 <input type="text" class="form-control @error('client') is-invalid @enderror" id="client"
                     name="client" value="{{ old('client', $project->client) }}" required>

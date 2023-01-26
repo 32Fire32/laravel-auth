@@ -15,18 +15,10 @@
             @enderror
             <div class="mb-3">
                 <label for="description">Riassunto*</label>
-                <textarea class="form-control @error('summary') is-invalid @enderror " rows="2" placeholder="Leave a summary here"
-                    id="summary" name="summary">{{ old('summary') }}</textarea>
+                <textarea class="form-control @error('summary') is-invalid @enderror " rows="2"
+                    placeholder="Due righe sul progetto.." id="summary" name="summary">{{ old('summary') }}</textarea>
             </div>
             @error('summary')
-                <div class="alert alert-danger">{{ $message }} </div>
-            @enderror
-            <div class="mb-3">
-                <label for="slug" class="form-label">Slug*</label>
-                <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug"
-                    value="{{ old('slug') }}" required>
-            </div>
-            @error('slug')
                 <div class="alert alert-danger">{{ $message }} </div>
             @enderror
             <div class="mb-3">

@@ -4,6 +4,11 @@
     <div class="container">
         <h1>Lista Progetti:</h1>
         <a href="{{ route('admin.projects.create') }}" class="btn btn-warning">Inserisci un nuovo progetto</a>
+        @if (session('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+        @endif
         <table class="table">
             <thead>
                 <tr>
@@ -23,10 +28,12 @@
                         <td>{{ $project->slug }}</td>
                         <td>{{ $project->client }}</td>
                         <td>{{ $project->shipped_at }}</td>
-                        <td><a href="{{ route('admin.projects.show', $project) }}" class="btn btn-primary">Dettagli</a></td>
-                        <td><a href="{{ route('admin.projects.edit', $project) }}" class="btn btn-warning">Modifica</a></td>
+                        <td><a href="{{ route('admin.projects.show', $project) }}" class="btn btn-primary">Dettagli</a>
+                        </td>
+                        <td><a href="{{ route('admin.projects.edit', $project) }}" class="btn btn-warning">Modifica</a>
+                        </td>
                         <td><a href="#" class="btn btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#ModalDelete{{ $project->id }}">{{ __('Delete') }}</a>
+                                data-bs-target="#ModalDelete{{ $project->id }}">Cancella</a>
 
                             <!-- Delete Warning Modal -->
 
@@ -36,17 +43,15 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title">Cancella il progetto</h5>
-                                            <button type="button" class="close" data-bs-dismiss="modal"
-                                                aria-label="Close">
+                                            <button type="button" class="close" data-bs-dismiss="modal">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            {{-- <input type=hidden id="id" name=id> --}}
                                             <h5 class="text-center">Sei sicuro di cancellare
                                                 {{ $project->name_project }}?
                                             </h5>
-                                            <form action="{{ route('admin.projects.destroy', $project->id) }}"
+                                            <form action="{{ route('admin.projects.destroy', $project->slug) }}"
                                                 method="POST" enctype="multipart/form-data">
                                                 @csrf
                                                 @method('DELETE')

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name_project');
             $table->string('summary', 500);
             $table->string('slug');
-            $table->string('client', 50);
+            $table->string('client', 100);
             $table->date('shipped_at');
             $table->timestamps();
         });

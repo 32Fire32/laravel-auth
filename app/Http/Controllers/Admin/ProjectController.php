@@ -6,6 +6,8 @@ use App\Models\Project;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use Illuminate\Support\Str;
+
 
 class ProjectController extends Controller
 {
@@ -40,15 +42,18 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
+        
         $data = $request->validated();
 
         $new_projects = new Project();
 
         $new_projects->fill($data);
 
+        $new_projects->slug = Str::slug($new_projects->name_project);
+
         $new_projects->save();
 
-        return redirect()->route('admin.projects.show', $new_projects->id);
+        return redirect()->route('admin.projects.index')->with('message', "$new_projects->name_project creato con successo!");
     }
 
     /**
@@ -85,7 +90,7 @@ class ProjectController extends Controller
     {
         $data = $request->validated();
         $project->update($data);
-        return redirect()->route('admin.projects.index');
+        return redirect()->route('admin.projects.index')->with('message', "$project->name_project aggiornato con successo!");
     }
 
     /**
@@ -96,7 +101,8 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        $old_title = $project->name_project;
         $project->delete();
-        return redirect()->route('admin.projects.index');
+        return redirect()->route('admin.projects.index')->with('message', "$old_title eliminato con successo!");;
     }
 }
