@@ -43,7 +43,8 @@
                 <div class="alert alert-danger">{{ $message }} </div>
             @enderror
 
-            <img id="output" width="100" class="mb-2" />
+            <img id="output" width="100" class="mb-2"
+                @if ($project->project_logo_img) src='{{ asset("storage/$project->project_logo_img") }}' @endif />
             <div class="mb-3">
                 <label for="project_logo_img" class="form-label">Logo del progetto</label>
                 <input type="file" class="form-control @error('project_logo_img') is-invalid @enderror"
