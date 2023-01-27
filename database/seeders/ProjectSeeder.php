@@ -27,6 +27,7 @@ class ProjectSeeder extends Seeder
         $new_project->slug = Str::slug($new_project->name_project);
         $new_project->client = $faker->company();
         $new_project->shipped_at = $faker->date();
+        $new_project->project_logo_img = null;
         $new_project->save();  
         }
         

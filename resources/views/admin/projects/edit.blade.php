@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <h1>Modifica il progetto {{ $project->name_project }}</h1>
-        <form action="{{ route('admin.projects.update', $project) }}" method="POST">
+        <form action="{{ route('admin.projects.update', $project) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="mb-3">
@@ -36,6 +36,14 @@
                     name="shipped_at" value="{{ old('shipped_at', $project->shipped_at) }}" required>
             </div>
             @error('shipped_at')
+                <div class="alert alert-danger">{{ $message }} </div>
+            @enderror
+            <div class="mb-3">
+                <label for="project_logo_img" class="form-label">Logo del progetto</label>
+                <input type="file" class="form-control @error('project_logo_img') is-invalid @enderror"
+                    id="project_logo_img" name="project_logo_img" value="{{ old('project_logo_img') }}">
+            </div>
+            @error('project_logo_img')
                 <div class="alert alert-danger">{{ $message }} </div>
             @enderror
             <button type="submit" class="btn btn-primary">Modifica</button>

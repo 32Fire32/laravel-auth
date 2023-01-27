@@ -5,7 +5,7 @@
         <h1>Lista Progetti:</h1>
         <a href="{{ route('admin.projects.create') }}" class="btn btn-warning">Inserisci un nuovo progetto</a>
         @if (session('message'))
-            <div class="alert alert-success">
+            <div class="alert alert-success my-2">
                 {{ session('message') }}
             </div>
         @endif

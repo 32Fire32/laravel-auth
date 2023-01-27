@@ -30,6 +30,7 @@ class UpdateProjectRequest extends FormRequest
                 'summary' => 'required|string|max:500',
                 'client' => 'required|string|max:50',
                 'shipped_at' => 'required|date|before:tomorrow',
+                'project_logo_img' => 'nullable|image|max:2048'
         ];
     }
 }

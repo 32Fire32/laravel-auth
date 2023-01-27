@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 
@@ -43,13 +44,17 @@ class ProjectController extends Controller
     public function store(StoreProjectRequest $request)
     {
         
-        $data = $request->validated();
+        $data = $request->validated();    
 
         $new_projects = new Project();
 
         $new_projects->fill($data);
 
         $new_projects->slug = Str::slug($new_projects->name_project);
+
+        if(isset($data['project_logo_img'])){
+            $new_projects->project_logo_img = Storage::disk('public')->put('uploads', $data['project_logo_img']);
+        }
 
         $new_projects->save();
 
@@ -92,6 +97,13 @@ class ProjectController extends Controller
 
         $project->slug = Str::slug($data['name_project']);
 
+        if(isset($data['project_logo_img'])){
+            if($project->project_logo_img){
+              Storage::disk('public')->put('uploads', $data['project_logo_img']);
+            }
+            $data['project_logo_img'] = Storage::disk('public')->put('uploads', $data['project_logo_img']);
+        }
+
         $project->update($data);
         
         return redirect()->route('admin.projects.index')->with('message', "$project->name_project aggiornato con successo!");
@@ -106,7 +118,13 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $old_title = $project->name_project;
+
+        if($project->project_logo_img){
+            Storage::disk('public')->delete($project->project_logo_img);
+        }
+
         $project->delete();
+
         return redirect()->route('admin.projects.index')->with('message', "$old_title eliminato con successo!");;
     }
 }
