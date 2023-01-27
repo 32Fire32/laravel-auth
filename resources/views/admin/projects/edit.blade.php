@@ -43,6 +43,12 @@
                 <div class="alert alert-danger">{{ $message }} </div>
             @enderror
 
+            @if ($project->project_logo_img)
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="no_image" name="no_image">
+                    <label class="form-check-label" for="no_image">Nessuna immagine</label>
+                </div>
+            @endif
             <img id="output" width="100" class="mb-2"
                 @if ($project->project_logo_img) src='{{ asset("storage/$project->project_logo_img") }}' @endif />
             <div class="mb-3">

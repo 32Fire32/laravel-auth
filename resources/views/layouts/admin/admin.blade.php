@@ -81,6 +81,8 @@
 
     {{-- preview image in form --}}
     <script type="text/javascript" src="{{ URL::asset('preview_image.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('check.js') }}"></script>
+
 </body>
 
 </html>

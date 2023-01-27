@@ -103,9 +103,14 @@ class ProjectController extends Controller
 
         if(isset($data['project_logo_img'])){
             if($project->project_logo_img){
-              Storage::disk('public')->put('uploads', $data['project_logo_img']);
+              Storage::disk('public')->delete($project->project_logo_img);
             }
             $data['project_logo_img'] = Storage::disk('public')->put('uploads', $data['project_logo_img']);
+        }
+
+        if(isset($data['no_image']) && $project->project_logo_img){
+            Storage::disk('public')->delete($project->project_logo_img);
+            $project->project_logo_img = null;
         }
 
         $project->update($data);
