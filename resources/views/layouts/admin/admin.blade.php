@@ -21,6 +21,7 @@
 
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
+
 </head>
 
 <body>
@@ -77,6 +78,9 @@
             </div>
         </div>
     </div>
+
+    {{-- preview image in form --}}
+    <script type="text/javascript" src="{{ URL::asset('preview_image.js') }}"></script>
 </body>
 
 </html>

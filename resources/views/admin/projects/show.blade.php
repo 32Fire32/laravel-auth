@@ -9,5 +9,13 @@
             </div>
             <p>{!! $project->summary !!}</p>
         @endif
+        @if ($project->doc_project)
+            <div>
+                <a href="{{ asset("storage/$project->doc_project") }}" download>
+                    <i class="fa-solid fa-file-arrow-down"></i> Download File
+                </a>
+            </div>
+            <p>{!! $project->summary !!}</p>
+        @endif
         <a href="{{ route('admin.projects.index') }}"class="btn btn-primary">Torna alla lista dei progetti</a>
     @endsection

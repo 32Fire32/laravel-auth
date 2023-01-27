@@ -56,6 +56,10 @@ class ProjectController extends Controller
             $new_projects->project_logo_img = Storage::disk('public')->put('uploads', $data['project_logo_img']);
         }
 
+        if(isset($data['doc_project'])){
+            $new_projects->doc_project = Storage::disk('public')->put('uploads', $data['doc_project']);
+        }
+
         $new_projects->save();
 
         return redirect()->route('admin.projects.index')->with('message', "$new_projects->name_project creato con successo!");
@@ -121,6 +125,10 @@ class ProjectController extends Controller
 
         if($project->project_logo_img){
             Storage::disk('public')->delete($project->project_logo_img);
+        }
+
+        if($project->doc_project){
+            Storage::disk('public')->delete($project->doc_project);
         }
 
         $project->delete();
