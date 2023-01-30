@@ -2,8 +2,11 @@
 
 @section('content')
     <div class="container">
-        <h1>Lista Progetti:</h1>
-        <a href="{{ route('admin.projects.create') }}" class="btn btn-warning">Inserisci un nuovo progetto</a>
+        <div class="d-flex align-items-center justify-content-between p-5">
+            <h1>Lista Progetti:</h1>
+            <a href="{{ route('admin.projects.create') }}" class="btn btn-warning" data-bs-toggle="popover"
+                title="Clicca qui per inserire un nuovo progetto" data-bs-trigger="hover">Nuovo</a>
+        </div>
         @if (session('message'))
             <div class="alert alert-success my-2">
                 {{ session('message') }}
@@ -24,7 +27,7 @@
                 </div>
             </div>
         @endif
-        <table class="table">
+        <table class="table text-center">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -43,13 +46,14 @@
                         <td>{{ $project->slug }}</td>
                         <td>{{ $project->client }}</td>
                         <td>{{ $project->shipped_at }}</td>
-                        <td><a href="{{ route('admin.projects.show', $project) }}" class="btn btn-primary">Dettagli</a>
-                        </td>
-                        <td><a href="{{ route('admin.projects.edit', $project) }}" class="btn btn-warning">Modifica</a>
-                        </td>
-                        <td><a href="#" class="btn btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#ModalDelete{{ $project->id }}">Cancella</a>
-
+                        <td>
+                            <a href="{{ route('admin.projects.show', $project) }}" class="btn btn-info" role="button"
+                                title="Clicca qui per i dettagli" data-bs-trigger="hover">D</a>
+                            <a href="{{ route('admin.projects.edit', $project) }}" class="btn btn-warning"
+                                title="Clicca qui per modificare" data-bs-trigger="hover">M</a>
+                            <a href="#" class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#ModalDelete{{ $project->id }}" data-bs-toggle="popover"
+                                title="Clicca qui per i cancellare" data-bs-trigger="hover">C</a>
                             <!-- Delete Warning Modal -->
 
                             <div class="modal fade" id="ModalDelete{{ $project->id }}" tabindex="-1" role="dialog"
@@ -79,5 +83,10 @@
                 @endforeach
             </tbody>
         </table>
+        <script>
+            $(document).ready(function() {
+                $('[data-bs-toggle="popover"]').popover();
+            });
+        </script>
     @endsection
 </div>

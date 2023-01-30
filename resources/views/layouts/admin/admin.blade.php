@@ -4,7 +4,12 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+    {{-- jQuery --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    {{-- popperjs --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"
+        integrity="sha512-6UofPqm0QupIL0kzS/UIzekR73/luZdC6i/kXDbWnLOJoqwklBK6519iUnShaYceJ0y4FaiPtX/hRnV/X/xlUQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
@@ -80,8 +85,8 @@
     </div>
 
     {{-- preview image in form --}}
-    <script type="text/javascript" src="{{ URL::asset('preview_image.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('check.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js_apps/preview_image.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js_apps/check.js') }}"></script>
 
 </body>
 

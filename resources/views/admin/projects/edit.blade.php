@@ -44,8 +44,8 @@
             @enderror
 
             @if ($project->project_logo_img)
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="no_image" name="no_image">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="no_image" name="no_image">
                     <label class="form-check-label" for="no_image">Nessuna immagine</label>
                 </div>
             @endif
