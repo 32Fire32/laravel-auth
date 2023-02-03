@@ -8,20 +8,43 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-
+use Symfony\Component\HttpFoundation\Request;
 
 class ProjectController extends Controller
 {
+
+//     public function search(Request $request)
+// {
+//     $query = $request->input('query');
+
+//     $projects = Project::all(); // get all projects
+//     $filtered = $projects->filter(function ($project) use ($query) {
+//         return str_contains($project->name_project, $query);
+//     });
+
+//     return view('search-results', compact('filtered'));
+// }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $projects = Project::all();
+        // $projects = Project::all();
+        $projects = Project::where([
+            ['name_project', '!=', Null],
+            [function($query) use ($request){
+                if(($term = $request->term)){
+                    $query->orWhere('name_project', 'LIKE', '%' . $term . '%')->get();
+                }
+            }]
+        ])
+        ->orderBy('id', 'desc')
+        ->paginate(10);
         
-        return view('admin.projects.index', compact('projects'));
+        return view('admin.projects.index', compact('projects'))->with('i', (request()->input('page',1)-1)*5);
     }
 
     /**

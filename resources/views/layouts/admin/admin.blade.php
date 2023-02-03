@@ -38,8 +38,8 @@
                 aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <input class="form-control form-control-dark w-100" type="text" placeholder="Search"
-                aria-label="Search" />
+            {{-- <input class="form-control form-control-dark w-100" type="text" placeholder="Cerca il tuo progetto"
+                aria-label="Search" id="searchInput" /> --}}
             <div class="navbar-nav">
                 <div class="nav-item text-nowrap ms-2">
                     <a class="nav-link" href="{{ route('logout') }}"
@@ -87,6 +87,7 @@
     {{-- preview image in form --}}
     <script type="text/javascript" src="{{ URL::asset('js_apps/preview_image.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js_apps/check.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js_apps/filter.js') }}"></script>
 
 </body>
 
